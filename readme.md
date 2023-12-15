@@ -1,50 +1,16 @@
-#### Matlab Summary
+## Matlab Summary
+### commands in Matlab
 * `imread` is used to read an image in Matlab.
 * `imshow` is used to display an image in Matlab.
 * `%` is used to comment in Matlab.
 * `clc` is used to clear the command window.
 * `clear all` is used to clear the workspace.
-```
-Example: 
-    img=imread('circles.png'); 
-    % matlab\toolbox\images\imdata\circles.png
-    imshow(img);
-    cls;
-    clear all;
-```
-* `figure,imshow()` is used to display single or multiple images in Matlab.
-```
-Example: 
-    img1=imread('circles.png');
-    img2=imread('coins.png);
-    figure,imshow(img1);
-    figure,imshow(img2);
-```
+* `matlab\toolbox\images\imdata\circles.png` path to find the image in Matlab.
+* `figure,imshow()` is used to display single or 
 * `rgb2gray` is used to convert RGB image to grayscale image in Matlab.
-```
-Example: 
-    img=imread('peppers.png');
-    img_gray=rgb2gray(img);
-    figure,imshow(img_gray);
-```
 * `im2bw` is used to convert RGB image to binary image in Matlab.
-```
-Example: 
-    img=imread('peppers.png');
-    img_bw=im2bw(img);
-    figure,imshow(img_bw);
-```
-* `c(:,:,1) c(:,:,2) c(:,:,3)`
-```
-Example: 
-    img=imread('peppers.png');
-    level1=img(:,:,1);
-    level2=img(:,:,2);
-    level3=img(:,:,3)
-    figure,imshow(level1); %red gray
-    figure,imshow(level2); %green gray
-    figure,imshow(level3); %blue gray
-```
+* `c(:,:,1) c(:,:,2) c(:,:,3)` is used to extract the red, green and blue channels of the image in Matlab.
+
 * Define Function in Matlab:
 ```
 function [output_args] = function_name(input_args)
@@ -52,7 +18,15 @@ function [output_args] = function_name(input_args)
     % Perform computations here
 end
 ```
-* Convert RGB image to grayscale image in Matlab:
+<hr>
+
+<h4 style="
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+">| Convert RGB image to grayscale </h4>
+
 ```
 function [gray] = RGBTOGRAY(RGB, option)
     % Function to convert RGB image to grayscale
