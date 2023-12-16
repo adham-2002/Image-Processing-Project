@@ -22,6 +22,5 @@ function [gray] = Rgb2Gray(RGB, option)
         end
     end
     gray = uint8(gray);
-    imshow(gray);
 end
 
