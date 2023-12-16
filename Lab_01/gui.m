@@ -186,7 +186,7 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
 
 % --- Executes on button press in exit.
 function exit_Callback(hObject, eventdata, handles)
-
+closereq();
 
 
 % --- Executes on button press in Retrieve.
