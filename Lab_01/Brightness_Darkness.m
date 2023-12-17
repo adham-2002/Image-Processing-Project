@@ -21,6 +21,4 @@ function [new_image] = Brightness_Darkness(old_image, offset, option)
             end
         end
     end
-
-    imshow(new_image);
 end

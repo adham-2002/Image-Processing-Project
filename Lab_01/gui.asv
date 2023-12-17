@@ -246,8 +246,8 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
     end
 
 
-brightness_text_box_Callback
-function brightness_text_box_Callback(hObject, eventdata, handles)
+
+function tranformation_textbox_Callback(hObject, eventdata, handles)
 
 % Get the value from the textbox
 test = get(hObject, 'String');
@@ -283,7 +283,7 @@ end
 
 
 
-function tranformation_textbox_Callback(hObject, eventdata, handles)
+function (hObject, eventdata, handles)
 % Get the value from the textbox
 c_str = get(hObject, 'String');
 

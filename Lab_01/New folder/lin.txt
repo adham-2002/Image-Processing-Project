@@ -1,0 +1,35 @@
+% mean filter
+        mask = 1/25*[  1 1 1 1 1;1 1 1 1 1;1 1 1 1 1;1 1 1 1 1;1 1 1 1 1];
+%weight filter
+        mask=1/16*[1 2 1;2 4 2;2 0 2];
+%point detection
+        mask=[0 1 0;1 -4 1;0 1 0];
+        %sobel mask
+            %horizontal
+            mask=[1 2 1;0 0 0;-1 -2 -1];
+            %vertical
+            mask=[1 0 -1;2 0 -2;1 0 -1];
+            %right digonal
+            mask=[1 0 -1;2 0 -2;1 0 -1];
+            %left digonal
+            mask=[0 -1 -2;1 0 -1;2 1 0];
+        %robet mask
+            %horizontal
+            mask=[0 1 0;0 0 0;0 -1 0];
+            %vertical
+            mask=[0 0 0;1 0 -1;0 0 0];
+            %right digonal
+            mask=[1 0 0;0 0 0;0 0 -1];
+            %left digonal
+            mask=[0 0 1;0 0 0;-1 0 0];
+%point sharping
+            mask=[0 1 0;1 -3 1;0 1 0];
+
+             %horizontal
+             mask=[0 1 0;0 1 0;0 -1 0];
+            %vertical
+            mask=[0 0 0;1 1 -1 ;0 0 0];
+            %right digonal
+            mask=[0 0 1;0 1 0;-1 0 0];
+            %left digonal
+            mask=[1 0 0;0 1 0;0 0 -1];

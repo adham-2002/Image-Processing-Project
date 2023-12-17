@@ -1,0 +1,1 @@
+    %op 1 --> min , 2 --> median ,3 --> midpoint ,4 --> max
