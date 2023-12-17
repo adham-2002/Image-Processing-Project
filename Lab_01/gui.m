@@ -347,15 +347,15 @@ end
 
     try
         % Call binary function to convert the imported image to grayscale
-        Fourierimage = FourierTransformation(handles.importedImage);
+        Bright_and_Dark = Brightness_Darkness(handles.importedImage,handles.bright_dark,2);
 
         % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
         axes(handles.axes2);
-        imshow(Fourierimage);
-        title('Frequency Domain');
+        imshow(Bright_and_Dark);
+        title('Bright | Dark Image');
 
         % Store the binaryimage image data in handles for future use
-        handles.Fourierimage = Fourierimage;
+        handles.Bright_and_Dark = Bright_and_Dark;
 
         % Update handles structure
         guidata(hObject, handles);
@@ -364,8 +364,6 @@ end
         % Display the error message
         errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
     end
-
-
 % --- Executes on button press in Substract.
 function Substract_Callback(hObject, eventdata, handles)
 if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
@@ -375,15 +373,15 @@ end
 
     try
         % Call binary function to convert the imported image to grayscale
-        Fourierimage = FourierTransformation(handles.importedImage);
+        Bright_and_Dark = Brightness_Darkness(handles.importedImage,handles.bright_dark,3);
 
         % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
         axes(handles.axes2);
-        imshow(Fourierimage);
-        title('Frequency Domain');
+        imshow(Bright_and_Dark);
+        title('Bright | Dark Image');
 
         % Store the binaryimage image data in handles for future use
-        handles.Fourierimage = Fourierimage;
+        handles.Bright_and_Dark = Bright_and_Dark;
 
         % Update handles structure
         guidata(hObject, handles);
@@ -392,6 +390,7 @@ end
         % Display the error message
         errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
     end
+
 
 
 % --- Executes on button press in Divide.
@@ -403,15 +402,15 @@ end
 
     try
         % Call binary function to convert the imported image to grayscale
-        Fourierimage = FourierTransformation(handles.importedImage);
+        Bright_and_Dark = Brightness_Darkness(handles.importedImage,handles.bright_dark,4);
 
         % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
         axes(handles.axes2);
-        imshow(Fourierimage);
-        title('Frequency Domain');
+        imshow(Bright_and_Dark);
+        title('Bright | Dark Image');
 
         % Store the binaryimage image data in handles for future use
-        handles.Fourierimage = Fourierimage;
+        handles.Bright_and_Dark = Bright_and_Dark;
 
         % Update handles structure
         guidata(hObject, handles);
