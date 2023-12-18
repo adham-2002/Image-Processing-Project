@@ -395,7 +395,7 @@ end
     <img src="img/Sharpening.png">
     * `Point Sharpening`
     ![Alt text](img/point_sharpe.png)
-    
+
 ```
 function [final_img  ] = LinearFilter( img,mask )
     [rm, cm] = size(mask);
@@ -471,10 +471,10 @@ end
   -webkit-background-clip: text;
 "><li>Non Linear Filters</li> </h4>
 
-1- `Min Filter ` take minium value (good for Salt)
-2- `Median Filter` take mid value (good for salt and peppers)
-3- `Max Filter`take maximum value (good for peppers)
-4- `MidPoint Filter` (min +max) / 2 (Good for random Gaussian and uniform noise) 
+* `Min Filter ` take minium value (good for Salt)
+* `Median Filter` take mid value (good for salt and peppers)
+* `Max Filter`take maximum value (good for peppers)
+* `MidPoint Filter` (min +max) / 2 (Good for random Gaussian and uniform noise) 
 
 
 ```

@@ -1195,3 +1195,44 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
         % Display the error message
         errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
     end
+
+
+% --- Executes on button press in ideal_low.
+function ideal_low_Callback(hObject, eventdata, handles)
+if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
+        errordlg('Please import an image first.', 'Image Not Imported', 'modal');
+        return;
+    end
+
+    try
+        % Call binary function to convert the imported image to grayscale
+        ideal = Ideal_Filter(handles.importedImage,25,1);
+
+        % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
+        axes(handles.axes2);
+        imshow(ideal);
+        title('Ideal(Low Pass) Image');
+
+        % Store the binaryimage image data in handles for future use
+        handles.ideal = ideal;
+
+        % Update handles structure
+        guidata(hObject, handles);
+
+    catch exception
+        % Display the error message
+        errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
+    end
+
+% --- Executes on button press in Butterworth_LPF.
+function Butterworth_LPF_Callback(hObject, eventdata, handles)
+% hObject    handle to Butterworth_LPF (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in Gaussian_LPF.
+function Gaussian_LPF_Callback(hObject, eventdata, handles)
+% hObject    handle to Gaussian_LPF (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
