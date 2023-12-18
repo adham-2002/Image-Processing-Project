@@ -395,6 +395,7 @@ end
     <img src="img/Sharpening.png">
     * `Point Sharpening`
     ![Alt text](img/point_sharpe.png)
+    
 ```
 function [final_img  ] = LinearFilter( img,mask )
     [rm, cm] = size(mask);
