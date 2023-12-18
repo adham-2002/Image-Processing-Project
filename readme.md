@@ -391,12 +391,11 @@ end
     * `Point Detection`
     <img src="img/labliscan.png">
   * `Sharping Filters` 
-    * Line Sharpening
+    * `Line Sharpening`
     <img src="img/Sharpening.png">
     * `Point Sharpening`
     ![Alt text](img/point_sharpe.png)
 ```
-
 function [final_img  ] = LinearFilter( img,mask )
     [rm, cm] = size(mask);
     [r, c,l] = size(img); 
@@ -463,6 +462,7 @@ function [final_img  ] = LinearFilter( img,mask )
    final_img=uint8(final_img);
 end
 ```
+
 <h4 style="
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);

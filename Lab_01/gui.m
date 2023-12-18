@@ -1167,3 +1167,31 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
         % Display the error message
         errordlg(['Error converting image to Weighted Image: ' exception.message], 'Conversion Error', 'modal');
     end
+
+
+% --- Executes on button press in gray_binary.
+function gray_binary_Callback(hObject, eventdata, handles)
+if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
+        errordlg('Please import an image first.', 'Image Not Imported', 'modal');
+        return;
+    end
+
+    try
+        % Call binary function to convert the imported image to grayscale
+        gray_binary = Gray2Binary(handles.importedImage,150);
+
+        % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
+        axes(handles.axes2);
+        imshow(gray_binary);
+        title('Binary Image');
+
+        % Store the binaryimage image data in handles for future use
+        handles.gray_binary = gray_binary;
+
+        % Update handles structure
+        guidata(hObject, handles);
+
+    catch exception
+        % Display the error message
+        errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
+    end

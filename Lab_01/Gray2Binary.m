@@ -12,6 +12,6 @@ for i=1:H
     end
 end
 binary=logical(binary);%convert 0,1 int to true and false logical 
-imshow(binary);
+%imshow(binary);
 end
 
