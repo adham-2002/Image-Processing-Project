@@ -10,6 +10,4 @@ function new = negative_tranform(img)
                 end
             end
         end
-
-    imshow(new);
 end
