@@ -13,7 +13,7 @@ for c = 1:L
     end
 end
 %Normalization
-new_img=contrast_stretcing(img);
+new_img=stretching(img, 1,255);
 new_img=uint8(new_img);
 end
 

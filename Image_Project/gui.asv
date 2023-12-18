@@ -1370,15 +1370,15 @@ end
 
     try
         % Call binary function to convert the imported image to grayscale
-        salt_peppers = saltAndPepper(handles.importedImage,handles.ps,handles.pp);
+        histo_stretch = saltAndPepper(handles.importedImage,handles.ps,handles.pp);
         
         % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
         axes(handles.axes2);
-        imshow(salt_peppers);
-        title('Salt Peppers Noised Image');
+        imshow(histo_stretch);
+        title('Histogram Stretching');
 
         % Store the binaryimage image data in handles for future use
-        handles.salt_peppers = salt_peppers;
+        handles.histo_stretch = histo_stretch;
 
         % Update handles structure
         guidata(hObject, handles);
@@ -1391,50 +1391,16 @@ end
 
 % --- Executes on button press in uniform_noise.
 function uniform_noise_Callback(hObject, eventdata, handles)
-if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
-        errordlg('Please import an image first.', 'Image Not Imported', 'modal');
-        return;
-end
-
-    try
-        % Call binary function to convert the imported image to grayscale
-        uniform_noised = uniform_noise(handles.importedImage,handles.uni_start,handles.uni_end);
-        
-        % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
-        axes(handles.axes2);
-        imshow(uniform_noised);
-        title('Uniform Noised Image');
-
-        % Store the binaryimage image data in handles for future use
-        handles.uniform_noise = uniform_noised;
-
-        % Update handles structure
-        guidata(hObject, handles);
-
-    catch exception
-        % Display the error message
-        errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
-    end
+\
 
 
 function PS_noise_Callback(hObject, eventdata, handles)
-    % Get the value from the textbox
-ps = get(hObject, 'String');
+% hObject    handle to PS_noise (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
-% Convert the string to a double
-n_ps = str2double(ps);
-
-% Check if the conversion was successful
-if isnan(n_ps)
-    errordlg('Invalid value for c. Please enter a numeric value.', 'Invalid Input', 'modal');
-    return;
-end
-
-% Update handles structure with the new value of c
-handles.ps = n_ps/100;
-
-% Update handles structure
-guidata(hObject, handles);
+% Hints: get(hObject,'String') returns contents of PS_noise as text
+%        str2double(get(hObject,'String')) returns contents of PS_noise as a double
 
 
 % --- Executes during object creation, after setting all properties.
@@ -1452,23 +1418,13 @@ end
 
 
 function PP_noise_Callback(hObject, eventdata, handles)
-    % Get the value from the textbox
-pp = get(hObject, 'String');
+% hObject    handle to PP_noise (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
-% Convert the string to a double
-n_pp = str2double(pp);
+% Hints: get(hObject,'String') returns contents of PP_noise as text
+%        str2double(get(hObject,'String')) returns contents of PP_noise as a double
 
-% Check if the conversion was successful
-if isnan(n_pp)
-    errordlg('Invalid value for c. Please enter a numeric value.', 'Invalid Input', 'modal');
-    return;
-end
-
-% Update handles structure with the new value of c
-handles.pp = n_pp/100;
-
-% Update handles structure
-guidata(hObject, handles);
 
 % --- Executes during object creation, after setting all properties.
 function PP_noise_CreateFcn(hObject, eventdata, handles)
@@ -1485,23 +1441,13 @@ end
 
 
 function uniform_start_Callback(hObject, eventdata, handles)
-   % Get the value from the textbox
-uni_start = get(hObject, 'String');
+% hObject    handle to uniform_start (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
-% Convert the string to a double
-n_uni_start = str2double(uni_start);
+% Hints: get(hObject,'String') returns contents of uniform_start as text
+%        str2double(get(hObject,'String')) returns contents of uniform_start as a double
 
-% Check if the conversion was successful
-if isnan(n_uni_start)
-    errordlg('Invalid value for c. Please enter a numeric value.', 'Invalid Input', 'modal');
-    return;
-end
-
-% Update handles structure with the new value of c
-handles.uni_start = n_uni_start;
-
-% Update handles structure
-guidata(hObject, handles);
 
 % --- Executes during object creation, after setting all properties.
 function uniform_start_CreateFcn(hObject, eventdata, handles)
@@ -1518,28 +1464,40 @@ end
 
 
 function end_uniform_Callback(hObject, eventdata, handles)
-   % Get the value from the textbox
-uni_end = get(hObject, 'String');
+% hObject    handle to end_uniform (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
-% Convert the string to a double
-n_uni_end = str2double(uni_end);
-
-% Check if the conversion was successful
-if isnan(n_uni_end)
-    errordlg('Invalid value for c. Please enter a numeric value.', 'Invalid Input', 'modal');
-    return;
-end
-
-% Update handles structure with the new value of c
-handles.uni_end = n_uni_end;
-
-% Update handles structure
-guidata(hObject, handles);
+% Hints: get(hObject,'String') returns contents of end_uniform as text
+%        str2double(get(hObject,'String')) returns contents of end_uniform as a double
 
 
 % --- Executes during object creation, after setting all properties.
 function end_uniform_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to end_uniform (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function percent_unifrom_Callback(hObject, eventdata, handles)
+% hObject    handle to percent_unifrom (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of percent_unifrom as text
+%        str2double(get(hObject,'String')) returns contents of percent_unifrom as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function percent_unifrom_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to percent_unifrom (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
