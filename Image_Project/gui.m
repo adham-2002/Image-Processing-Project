@@ -1206,7 +1206,7 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
 
     try
         % Call binary function to convert the imported image to grayscale
-        ideal = Ideal_Filter(handles.importedImage,25,1);
+        ideal = Ideal_Filter_RGB(handles.importedImage,20,0);
 
         % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
         axes(handles.axes2);
@@ -1226,13 +1226,136 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
 
 % --- Executes on button press in Butterworth_LPF.
 function Butterworth_LPF_Callback(hObject, eventdata, handles)
-% hObject    handle to Butterworth_LPF (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
+        errordlg('Please import an image first.', 'Image Not Imported', 'modal');
+        return;
+    end
 
+    try
+        % Call binary function to convert the imported image to grayscale
+        butter = Butterworth_Filter_RGB(handles.importedImage,20,0);
 
+        % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
+        axes(handles.axes2);
+        imshow(butter);
+        title('Butter Worth) Image');
+
+        % Store the binaryimage image data in handles for future use
+        handles.butter = butter;
+
+        % Update handles structure
+        guidata(hObject, handles);
+
+    catch exception
+        % Display the error message
+        errordlg(['Error converting image to butterworth: ' exception.message], 'Conversion Error', 'modal');
+    end
 % --- Executes on button press in Gaussian_LPF.
 function Gaussian_LPF_Callback(hObject, eventdata, handles)
-% hObject    handle to Gaussian_LPF (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
+        errordlg('Please import an image first.', 'Image Not Imported', 'modal');
+        return;
+end
+
+    try
+        % Call binary function to convert the imported image to grayscale
+        gaussian = Gaussian_Filter_RGB(handles.importedImage,20,0);
+
+        % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
+        axes(handles.axes2);
+        imshow(gaussian);
+        title('Gaussian(Low Pass) Image');
+
+        % Store the binaryimage image data in handles for future use
+        handles.gaussian = gaussian;
+
+        % Update handles structure
+        guidata(hObject, handles);
+
+    catch exception
+        % Display the error message
+        errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
+    end
+
+
+% --- Executes on button press in ideal_HBF.
+function ideal_HBF_Callback(hObject, eventdata, handles)
+if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
+        errordlg('Please import an image first.', 'Image Not Imported', 'modal');
+        return;
+    end
+
+    try
+        % Call binary function to convert the imported image to grayscale
+        ideal = Ideal_Filter_RGB(handles.importedImage,20,1);
+
+        % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
+        axes(handles.axes2);
+        imshow(ideal);
+        title('Ideal(High Pass) Image');
+
+        % Store the binaryimage image data in handles for future use
+        handles.ideal = ideal;
+
+        % Update handles structure
+        guidata(hObject, handles);
+
+    catch exception
+        % Display the error message
+        errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
+    end
+
+% --- Executes on button press in Butterworth_HPF.
+function Butterworth_HPF_Callback(hObject, eventdata, handles)
+if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
+        errordlg('Please import an image first.', 'Image Not Imported', 'modal');
+        return;
+    end
+
+    try
+        % Call binary function to convert the imported image to grayscale
+        butter = Butterworth_Filter_RGB(handles.importedImage,20,1);
+
+        % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
+        axes(handles.axes2);
+        imshow(butter);
+        title('Butter Worth) Image');
+
+        % Store the binaryimage image data in handles for future use
+        handles.butter = butter;
+
+        % Update handles structure
+        guidata(hObject, handles);
+
+    catch exception
+        % Display the error message
+        errordlg(['Error converting image to butterworth: ' exception.message], 'Conversion Error', 'modal');
+    end
+
+% --- Executes on button press in Gaussian_HPF.
+function Gaussian_HPF_Callback(hObject, eventdata, handles)
+if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
+        errordlg('Please import an image first.', 'Image Not Imported', 'modal');
+        return;
+end
+
+    try
+        % Call binary function to convert the imported image to grayscale
+        gaussian = Gaussian_Filter_RGB(handles.importedImage,20,1);
+
+        % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
+        axes(handles.axes2);
+        imshow(gaussian);
+        title('Gaussian(High Pass) Image');
+
+        % Store the binaryimage image data in handles for future use
+        handles.gaussian = gaussian;
+
+        % Update handles structure
+        guidata(hObject, handles);
+
+    catch exception
+        % Display the error message
+        errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
+    end
+

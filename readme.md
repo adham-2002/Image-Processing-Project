@@ -394,7 +394,7 @@ end
     * `Line Sharpening`
     <img src="img/Sharpening.png">
     * `Point Sharpening`
-    ![Alt text](img/point_sharpe.png)
+    ![Alt text](img/Screenshot%202023-12-18%20130007.png)
 
 ```
 function [final_img  ] = LinearFilter( img,mask )
