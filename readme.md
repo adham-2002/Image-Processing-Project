@@ -562,3 +562,203 @@ function [ final_img ] = NonLinear( img,op )
     final_img=uint8(final_img);
 end
 ```
+<hr>
+<h3 style="
+  position: block;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+">| Frequency Domain</h3>
+<img src="img/frequency.png">
+<p>It consists of modifying the FT of an input image and then finding the IFT to get the output image. 
+</p>
+
+<h4 style="
+  position: block;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+"><li>Fourier Transformation</l></h4>
+
+```
+function [transformed] = FourierTransformation(img)
+c = fft2(img);
+ca = abs(c);
+clog = log(1+ca);
+f = mat2gray(clog);
+transformed = fftshift(f);
+end
+```
+<h4 style="
+  position: block;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+"><li>Low-Pass Filter(Blurring,smoothing)</li></h4>
+<p> A Filter that remove high frequency while keeping low frequency</p>
+
+* `Ideal low-pass filter` (ILPF) (Very Sharp)
+* `Butterworth low-pass filter` (BLPF)
+* `Gaussian low-pass filter` (GLPF) (very smooth)
+<h4 style="
+  position: block;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+"><li>High-Pass Filter(Sharpening)</li></h4>
+<p>
+A filter that remove low frequency while keeping high frequency
+</p>
+
+* `Ideal high-pass filter` (IHPF) 
+* `Butterworth high-pass filter` (BHPF)
+* `Gaussian high-pass filter` (GHPF)
+
+> Ideal FIlter
+```
+function [ zz ] = Ideal_Filter(I,D0,index )
+    [H W L]=size(I);
+    filter=zeros(H,W,L);
+    for j=1:H
+        for k=1:W
+            dist=sqrt((j-(H/2)).^2+(k-(W/2)).^2);
+            if(dist<=D0)
+                filter(j,k)=1;
+            end
+          
+        end
+    end
+    if(index==0)
+      filter=filter;
+    else
+        filter=1-filter;
+    end
+    fi=fft2(I);
+    fi=fftshift(fi);
+    reall=real(fi);
+    imagin=imag(fi);
+    nreall=filter.*reall;
+    nimagin=filter.*imagin;
+    NI=nreall(:,:)+i*nimagin(:,:);
+    NI=fftshift(NI);
+    NI=ifft2(NI);
+    zz=mat2gray((abs(NI)));
+end
+```
+```
+function [result] = Ideal_Filter_RGB(image, D0, index)
+    [H, W, L] = size(image);
+    result = zeros(H, W, L);
+
+    if L == 1
+        result = Ideal_Filter(image, D0, index);
+    else
+        a = Ideal_Filter(image(:,:,1), D0, index);
+        b = Ideal_Filter(image(:,:,2), D0, index);
+        c = Ideal_Filter(image(:,:,3), D0, index);
+        result = cat(3, a, b, c);
+    end
+
+    result = im2uint8(result);
+end
+```
+> Butterworth Filter
+
+```
+function [zz] =Butterworth_Filter(image,D0,index)
+[H W L]=size(image);
+filter =zeros(H,W,L);
+for j=1:H 
+    for k=1:W 
+        dist=sqrt((j-(H/2)).^2+(k-(W/2)).^2);
+        filter(j,k)=(1/(1+(dist/D0).^(2)));
+    end
+end
+if(index==0)
+    filter = filter;
+else
+    filter=1-filter;
+end
+
+fi = fft2(image); 
+fi = fftshift(fi);
+reall=real(fi);  
+imagin=imag(fi);
+nreal=filter.*reall; 
+nimagin =filter.*imagin;
+NI=nreal(:,:)+i*nimagin(:,:);
+NI =fftshift(NI);
+NI=ifft2(NI) ;   
+zz=mat2gray((abs(NI)));
+end
+```
+```
+function [result] = Butterworth_Filter_RGB(image, D0, index)
+    [H, W, L] = size(image);
+    result = zeros(H, W, L);
+    if L == 1
+        result = Butterworth_Filter(image, D0, index);
+    else
+        a = Butterworth_Filter(image(:,:,1), D0, index);
+        b = Butterworth_Filter(image(:,:,2), D0, index);
+        c = Butterworth_Filter(image(:,:,3), D0, index);
+        result = cat(3, a, b, c);
+    end
+
+    result = im2uint8(result);
+end
+```
+> Gaussian Filter
+```
+function [result] = Gaussian_Filter_RGB(image, D0, index)
+    [H, W, L] = size(image);
+    result = zeros(H, W, L);
+
+    if L == 1
+        result = Gaussian_Filter(image, D0, index);
+    else
+        a = Gaussian_Filter(image(:,:,1), D0, index);
+        b = Gaussian_Filter(image(:,:,2), D0, index);
+        c = Gaussian_Filter(image(:,:,3), D0, index);
+        result = cat(3, a, b, c);
+    end
+
+    result = im2uint8(result);
+end
+```
+```
+function [ zz ] = Gaussian_Filter( I,D0,index )
+[H W L]=size( I );
+filter=zeros(H,W,L);
+for j=1:H
+    for k=1:W
+        distance=sqrt((j-(H/2)).^2+(k-(W/2)).^2);
+        filter(j,k)=exp((-(distance).^2)/(2*(D0.^2)));
+    end
+end
+if (index==0)
+    filter=filter;
+else
+    filter=1-filter;
+end
+fi=fft2(I);
+fi=fftshift(fi);
+reall=real(fi);
+imagin=imag(fi);
+nreall=filter.*reall;
+nimagin=filter.*imagin;
+NI=nreall(:,:)+i*nimagin(:,:);
+NI=fftshift(NI);
+NI=ifft2(NI);
+zz=mat2gray((abs(NI)));
+end
+```
+
+
+
+
+
