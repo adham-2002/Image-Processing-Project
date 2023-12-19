@@ -825,7 +825,7 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
 
         axes(handles.axes2);
         imshow(medSharpenImage);
-        title('Sharpened Image');
+        title('Smoothed Image');
 
         % Store the grayscale image data in handles for future use
         handles.medSharpenImage = medSharpenImage;
@@ -1642,7 +1642,7 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
 
     try
         % Call binary function to convert the imported image to grayscale
-        erlang_noise = Erlang_Gamma_Noise(handles.importedImage,1,20);
+        erlang_noise = Erlang_Gamma_Noise(handles.importedImage,1,10);
 
         % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
         axes(handles.axes2);
