@@ -760,4 +760,159 @@ NI=ifft2(NI);
 zz=mat2gray((abs(NI)));
 end
 ```
+<hr>
 
+<h3 style="
+  position: block;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+">| Image Restoration </h3>
+<p> 
+Recover an image that has been degraded by noise(objective).
+</p>
+
+* Noise Probability Density Function
+  * Gaussian (Normal) Noise
+  * Rayleigh Noise
+  * Erlang(Gamma) Noise
+  * Exponential Noise
+  * Uniform Noise
+  * Bipolar Impulse Noise ( salt-and-pepper )
+
+<img src="img/nois.png">
+
+> Gaussian Noise
+```
+function [new_img] = Gaussian_noise_rgb(img, m, s)
+    img = double(img);
+    [H, W, L] = size(img);
+
+    for c = 1:L % Loop through color channels
+        for i = 1:255
+            pixelCount = round(((exp((-(i-m)^2)/(2*s^2)))/(sqrt(2*pi)*s))*H*W);
+            for j = 1:pixelCount
+                row = ceil(rand(1, 1) * H);
+                column = ceil(rand(1, 1) * W);
+                img(row, column, c) = img(row, column, c) + i;
+            end
+        end
+    end
+
+    % Normalization
+    new_img = zeros(size(img));
+    for c = 1:L
+        mn = min(min(img(:,:,c)));
+        mx = max(max(img(:,:,c)));
+        new_img(:,:,c) = ((img(:,:,c) - mn) / (mx - mn)) * 255;
+    end
+
+    % Convert to uint8
+    new_img = uint8(new_img);
+end
+```
+> Rayleigh Noise
+```
+function [h]=RayLeigh_Noise(img,a,b)
+[w,h,l]=size(img);
+new_image=img;
+%figure,imshow(I);
+for k=1:l
+for i=0:255
+    ns=(2*(i-a)*exp(power(i-a,2)/b))/b;
+ 
+    ns=uint8(ns);
+    for j=1:ns
+    x=randi(w,1,1);
+    y=randi(h,1,1);
+    new_image(x,y,k)=new_image(x,y,k)+i;
+    end
+end
+end
+h=uint8(new_image);
+end
+```
+> Erlang(Gamma) Noise
+```
+function [ new_img ] = Erlang_Gamma_Noise( img,a,b )
+[H W L]=size(img);
+for c = 1:L
+    for i = 1:255
+        pixelCount=round((((a.^b)*(i.^(b-1)))/(factorial(b-1)))*exp(-a*i)*H*W);
+        for j = 1 :pixelCount
+            row=ceil(rand(1,1)*H);
+            column=ceil(rand(1,1)*W);
+            img(row,column)=img(row,column)+i;
+        end
+    end
+end
+new_img = zeros(size(img));
+new_img=stretching(img, 1,255);
+new_img=uint8(new_img);
+end
+```
+> exponential
+```
+function [ new_img ] = Exponential_Noise( img,a )
+[H W L]=size(img);
+for c = 1:L
+    for i = 1:255
+        pixelCount=round(a*exp(-a*i)*H*W);
+        for j = 1 :pixelCount
+            row=ceil(rand(1,1)*H);
+            column=ceil(rand(1,1)*W);
+            img(row,column)=img(row,column)+i;
+        end
+    end
+end
+new_img = zeros(size(img));
+new_img=stretching(img, 1,255);
+new_img=uint8(new_img);
+end
+```
+> Uniform Noise
+```
+function [ new_img ] = uniform_noise( img, a, b )
+img=double(img);
+[H W L]=size(img);
+
+pixelCount=round((1/(b-a))*H*W);
+for c = 1:L
+    for i=1:255
+        for x=1:pixelCount
+            row=ceil(rand(1, 1)*H);
+            column=ceil(rand(1, 1)*W);
+            img(row, column)=img(row, column)+i;
+        end
+    end
+end
+%Normalization
+new_img=stretching(img, 1,255);
+new_img=uint8(new_img);
+end
+```
+> Bipolar Impulse Noise
+```
+function [ new_img ] = saltAndPepper( img,ps,pp )
+[H W L]=size(img);
+
+saltCount=round(ps*H*W);
+pepperCount=round(pp*H*W);
+
+for i=1:saltCount
+    row=ceil(rand(1, 1)*H);
+    column=ceil(rand(1, 1)*W);
+    img(row, column)=255;
+end
+
+for i=1:pepperCount
+    row=ceil(rand(1, 1)*H);
+    column=ceil(rand(1, 1)*W);
+    img(row, column)=0;
+end
+new_img=img;
+
+
+end
+```

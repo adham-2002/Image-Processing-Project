@@ -1659,3 +1659,10 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
         % Display the error message
         errordlg(['Error converting image to grayscale: ' exception.message], 'Conversion Error', 'modal');
     end
+
+
+% --- Executes during object creation, after setting all properties.
+function figure1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
