@@ -1587,7 +1587,7 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
 
     try
         % Call binary function to convert the imported image to grayscale
-        exp_noise = Exponential_Noise(handles.importedImage,20,1);
+        exp_noise = Exponential_Noise(handles.importedImage,0.1);
 
         % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
         axes(handles.axes2);
@@ -1615,7 +1615,7 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
 
     try
         % Call binary function to convert the imported image to grayscale
-        rayleigh_noise = RayLeigh_Noise(handles.importedImage,20,1);
+        rayleigh_noise = RayLeigh_Noise(handles.importedImage,1,20);
 
         % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
         axes(handles.axes2);
@@ -1642,7 +1642,7 @@ if ~isfield(handles, 'importedImage') || isempty(handles.importedImage)
 
     try
         % Call binary function to convert the imported image to grayscale
-        erlang_noise = Erlang_Gamma_Noise(handles.importedImage,20,1);
+        erlang_noise = Erlang_Gamma_Noise(handles.importedImage,1,20);
 
         % Display the binary image in axes2 (replace 'axes2' with your actual axes tag)
         axes(handles.axes2);

@@ -1,16 +1,18 @@
-function [ new_img ] = RayLeigh_Noise( img,a,b )
-[H W L]=size(img);
-for c = 1:L
-    for i = 1:255
-        pixelCount=round(((2/b)*(i-a)*(exp(((i-a).^2)/b)))*H*W);
-        for j = 1 :pixelCount
-            row=ceil(round(1,1)*H);
-            column=ceil(round(1,1)*W);
-            img(row,column)=img(row,column)+i;
-        end
+function [h]=RayLeigh_Noise(img,a,b)
+[w,h,l]=size(img);
+new_image=img;
+%figure,imshow(I);
+for k=1:l
+for i=0:255
+    ns=(2*(i-a)*exp(power(i-a,2)/b))/b;
+ 
+    ns=uint8(ns);
+    for j=1:ns
+    x=randi(w,1,1);
+    y=randi(h,1,1);
+    new_image(x,y,k)=new_image(x,y,k)+i;
     end
 end
-new_img = zeros(size(img));
-new_img=contrast_stretcing(img);
-new_img=uint8(new_img);
+end
+h=uint8(new_image);
 end
