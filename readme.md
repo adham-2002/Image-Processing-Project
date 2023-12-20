@@ -1,4 +1,7 @@
-# Matlab Summary
+# Matlab Project Summary
+## Screenshots
+<img width="1274" alt="screenshot" src="https://github.com/adham20022023/Image-Processing/assets/90427660/7dc314d5-bbd2-47a1-8506-a9a9ff163191">
+
 ## commands in Matlab
 * `imread` is used to read an image in Matlab.
 * `imshow` is used to display an image in Matlab.
