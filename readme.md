@@ -2,7 +2,7 @@
 
 ## Project Video
 
-[Watch the video](https://github.com/user-attachments/assets/4e1d4762-e5a9-442d-a402-e9accb71fe16)
+
 
 <video src="https://github.com/user-attachments/assets/4e1d4762-e5a9-442d-a402-e9accb71fe16"></video>
 
