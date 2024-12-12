@@ -2,35 +2,43 @@
 
 ## Project Video
 
+<!DOCTYPE html>
+<html>
+<body>
   <video width="600" controls>
     <source src="https://github.com/user-attachments/assets/4e1d4762-e5a9-442d-a402-e9accb71fe16" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-  
+</body>
+</html>
+
 ## commands in Matlab
-* `imread` is used to read an image in Matlab.
-* `imshow` is used to display an image in Matlab.
-* `%` is used to comment in Matlab.
-* `clc` is used to clear the command window.
-* `clear all` is used to clear the workspace.
-* `matlab\toolbox\images\imdata\circles.png` path to find the image in Matlab.
-* `figure,imshow()` is used to display single or 
-* `rgb2gray` is used to convert RGB image to grayscale image in Matlab.
-* `im2bw` is used to convert RGB image to binary image in Matlab.
-* `c(:,:,1) c(:,:,2) c(:,:,3)` is used to extract the red, green and blue channels of the image in Matlab.
-* `size()` is used to get the size of the image in Matlab.
-* `disp()` displays the value of variable 
-*  `zeros()` is used to create an image of zeros in Matlab.
-* `uint8` is used to create an image of unsigned 8-bit integers in Matlab because float number become zero.
-* `img2double` is used to convert image to double in Matlab.
-* `logical()` is used to convert 0,1 int to true and false(and or xor ) logical in Matlab.
-* `Define Function in Matlab:`
+
+- `imread` is used to read an image in Matlab.
+- `imshow` is used to display an image in Matlab.
+- `%` is used to comment in Matlab.
+- `clc` is used to clear the command window.
+- `clear all` is used to clear the workspace.
+- `matlab\toolbox\images\imdata\circles.png` path to find the image in Matlab.
+- `figure,imshow()` is used to display single or
+- `rgb2gray` is used to convert RGB image to grayscale image in Matlab.
+- `im2bw` is used to convert RGB image to binary image in Matlab.
+- `c(:,:,1) c(:,:,2) c(:,:,3)` is used to extract the red, green and blue channels of the image in Matlab.
+- `size()` is used to get the size of the image in Matlab.
+- `disp()` displays the value of variable
+- `zeros()` is used to create an image of zeros in Matlab.
+- `uint8` is used to create an image of unsigned 8-bit integers in Matlab because float number become zero.
+- `img2double` is used to convert image to double in Matlab.
+- `logical()` is used to convert 0,1 int to true and false(and or xor ) logical in Matlab.
+- `Define Function in Matlab:`
+
 ```
 function [output_args] = function_name(input_args)
     % Function body
     % Perform computations here
 end
 ```
+
 <hr>
 
 <h3 style="
