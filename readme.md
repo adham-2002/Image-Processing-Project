@@ -1,7 +1,12 @@
 # Matlab Project Summary
-## Screenshots
-<img width="1274" alt="screenshot" src="https://github.com/adham20022023/Image-Processing/assets/90427660/7dc314d5-bbd2-47a1-8506-a9a9ff163191">
 
+## Project Video
+
+  <video width="600" controls>
+    <source src="https://github.com/user-attachments/assets/4e1d4762-e5a9-442d-a402-e9accb71fe16" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
 ## commands in Matlab
 * `imread` is used to read an image in Matlab.
 * `imshow` is used to display an image in Matlab.
@@ -39,7 +44,7 @@ end
 
 function [gray] = RGBTOGRAY(RGB, option)
     % Function to convert RGB image to grayscale
-    
+
     [H, W, L] = size(RGB);
     gray = zeros(H, W);
     gray = double(gray);
@@ -68,8 +73,6 @@ end
 `4` Green channel (G).
 `5` Blue channel (B).
 ```
-
-
 
 <h3 style="
   font-family: Arial, Helvetica, sans-serif;
@@ -127,6 +130,7 @@ function binary = RGB2Binary(rgb, threshold)
 end
 
 ```
+
 <hr>
 
 <h3 style="
@@ -172,6 +176,7 @@ function [new_image] = Brightness_Darkness(old_image, offset, option)
     imshow(new_image);
 end
 ```
+
 <h3 style="
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
@@ -197,6 +202,7 @@ imshow(new_image);
 end
 
 ```
+
 <h3 style="
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
@@ -221,6 +227,7 @@ function new = negative_tranform(img)
     imshow(new);
 end
 ```
+
 <h3 style="
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
@@ -237,17 +244,18 @@ image = im2double(image);
 
 for i = 1:H
     for j = 1:W
-        if L == 3 
+        if L == 3
             newimage(i, j, 1) = image(i, j, 1)^value;
             newimage(i, j, 2) = image(i, j, 2)^value;
             newimage(i, j, 3) = image(i, j, 3)^value;
-        else 
+        else
             newimage(i, j, 1) = image(i, j, 1)^value;
         end
     end
 end
 end
 ```
+
 <h3 style="
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
@@ -263,7 +271,7 @@ if L == 3
     G_array=zeros(256,1);
     B_array=zeros(256,1);
     for i = 1:H
-        for j =1:W    
+        for j =1:W
             R_array(image(i,j,1)+1)=R_array(image(i,j,1)+1)+1;
             G_array(image(i,j,2)+1)=G_array(image(i,j,2)+1)+1;
             B_array(image(i,j,3)+1)=B_array(image(i,j,3)+1)+1;
@@ -277,15 +285,16 @@ hb(3).FaceColor = 'b';
 else
 array=zeros(256,1);
     for i = 1:H
-        for j =1:W    
+        for j =1:W
             array(image(i,j)+1)=array(image(i,j)+1)+1;
         end
     end
-    
+
     bar(array);
 end
 end
 ```
+
 <h3 style="
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
@@ -319,13 +328,14 @@ end
                 new_img(i,j,3)=((old_img(i,j,3) - old_min3) / (old_max3 - old_min3)) * (new_max - new_min) + new_min;
 
             end
-            
+
         end
     end
 new_img = uint8(new_img);
 imshow(new_img);
 end
 ```
+
 <h3 style="
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
@@ -348,7 +358,7 @@ function [result] = Histogram_Equalization(image)
             for j = 1:W
                 pixel_value = image(i, j, channel) + 1;
                 array(pixel_value) = array(pixel_value) + 1;
-                prob(pixel_value) = array(pixel_value) / (H * W);% calculate the probability for each pixel 
+                prob(pixel_value) = array(pixel_value) / (H * W);% calculate the probability for each pixel
             end
         end
 
@@ -356,7 +366,7 @@ function [result] = Histogram_Equalization(image)
         sum = double(sum);
         for i = 1:256
             sum = sum + prob(i);
-            sk(i) = 255 * (sum); 
+            sk(i) = 255 * (sum);
         end
 
         for i = 1:H
@@ -367,6 +377,7 @@ function [result] = Histogram_Equalization(image)
     end
 end
 ```
+
 <hr>
 <h3 style="
   font-family: Arial, Helvetica, sans-serif;
@@ -381,28 +392,29 @@ end
   -webkit-background-clip: text;
 "><li>Linear Filters</li> </h4>
 
-`Mean Filter` Blurring  & Smoothing & Averaging Sum=1
-  * `Box Filter ` All coefficients are Equal
+`Mean Filter` Blurring & Smoothing & Averaging Sum=1
+
+- `Box Filter ` All coefficients are Equal
   <img src="img/box_filter.png">
-  * `Weighted Filter` all coefficient not Equal
+- `Weighted Filter` all coefficient not Equal
   <img src ="img/weight_filter.png">
-  * `Edge Detection Filters` Sum of mask elements must be 0
-    * `Sobel Mask`
+- `Edge Detection Filters` Sum of mask elements must be 0
+  - `Sobel Mask`
     <img src="img/slobal.png">
-    * `Robert Mask`
+  - `Robert Mask`
     <img src="img/robert.png">
-    * `Point Detection`
+  - `Point Detection`
     <img src="img/labliscan.png">
-  * `Sharping Filters` 
-    * `Line Sharpening`
+- `Sharping Filters`
+  - `Line Sharpening`
     <img src="img/Sharpening.png">
-    * `Point Sharpening`
+  - `Point Sharpening`
     ![Alt text](img/Screenshot%202023-12-18%20130007.png)
 
 ```
 function [final_img  ] = LinearFilter( img,mask )
     [rm, cm] = size(mask);
-    [r, c,l] = size(img); 
+    [r, c,l] = size(img);
     paddSr = floor(rm/2);
     paddsc = floor(cm/2);
     padding = zeros(r+(2*paddSr),c + (2*paddsc),l);
@@ -425,7 +437,7 @@ function [final_img  ] = LinearFilter( img,mask )
             sum1=0.0;sum2=0.0;sum3=0.0;
             for m = 1 : rm
                 for n = 1 : cm
-                    if l==1     
+                    if l==1
                         sum=sum+(mask(m,n)*padding((i-paddSr)+m-1,(j-paddsc)+n-1));
                     elseif l==3
                         sum1=sum1+(mask(m,n)*padding((i-paddSr)+m-1,(j-paddsc)+n-1,1));
@@ -474,11 +486,10 @@ end
   -webkit-background-clip: text;
 "><li>Non Linear Filters</li> </h4>
 
-* `Min Filter ` take minium value (good for Salt)
-* `Median Filter` take mid value (good for salt and peppers)
-* `Max Filter`take maximum value (good for peppers)
-* `MidPoint Filter` (min +max) / 2 (Good for random Gaussian and uniform noise) 
-
+- `Min Filter ` take minium value (good for Salt)
+- `Median Filter` take mid value (good for salt and peppers)
+- `Max Filter`take maximum value (good for peppers)
+- `MidPoint Filter` (min +max) / 2 (Good for random Gaussian and uniform noise)
 
 ```
 function [ final_img ] = NonLinear( img,op )
@@ -499,7 +510,7 @@ function [ final_img ] = NonLinear( img,op )
             end
         end
     end
-         
+
    final_img = zeros(r, c,l);
    [rp, cp,l] = size(padding);
    for i=paddSr+1:rp-paddSr
@@ -520,7 +531,7 @@ function [ final_img ] = NonLinear( img,op )
                     end
                 end
             end
-           
+
             if l==1
                 non_f=sort(non_f);
                 if op==1
@@ -557,15 +568,16 @@ function [ final_img ] = NonLinear( img,op )
                     final_img(i-paddSr,j-paddsc,2)=non_f2(rm*cm);
                     final_img(i-paddSr,j-paddsc,3)=non_f3(rm*cm);
                  end
-                
+
             end
         end
     end
-    
+
     final_img=uint8(final_img);
 end
 
 ```
+
 <hr>
 
 <h3 style="
@@ -597,6 +609,7 @@ f = mat2gray(clog);
 transformed = fftshift(f);
 end
 ```
+
 <h4 style="
   position: block;
   font-family: Arial, Helvetica, sans-serif;
@@ -606,9 +619,9 @@ end
 "><li>Low-Pass Filter(Blurring,smoothing)</li></h4>
 <p> A Filter that remove high frequency while keeping low frequency</p>
 
-* `Ideal low-pass filter` (ILPF) (Very Sharp)
-* `Butterworth low-pass filter` (BLPF)
-* `Gaussian low-pass filter` (GLPF) (very smooth)
+- `Ideal low-pass filter` (ILPF) (Very Sharp)
+- `Butterworth low-pass filter` (BLPF)
+- `Gaussian low-pass filter` (GLPF) (very smooth)
 <h4 style="
   position: block;
   font-family: Arial, Helvetica, sans-serif;
@@ -620,11 +633,12 @@ end
 A filter that remove low frequency while keeping high frequency
 </p>
 
-* `Ideal high-pass filter` (IHPF) 
-* `Butterworth high-pass filter` (BHPF)
-* `Gaussian high-pass filter` (GHPF)
+- `Ideal high-pass filter` (IHPF)
+- `Butterworth high-pass filter` (BHPF)
+- `Gaussian high-pass filter` (GHPF)
 
 > Ideal FIlter
+
 ```
 function [ zz ] = Ideal_Filter(I,D0,index )
     [H W L]=size(I);
@@ -635,7 +649,7 @@ function [ zz ] = Ideal_Filter(I,D0,index )
             if(dist<=D0)
                 filter(j,k)=1;
             end
-          
+
         end
     end
     if(index==0)
@@ -655,6 +669,7 @@ function [ zz ] = Ideal_Filter(I,D0,index )
     zz=mat2gray((abs(NI)));
 end
 ```
+
 ```
 function [result] = Ideal_Filter_RGB(image, D0, index)
     [H, W, L] = size(image);
@@ -672,14 +687,15 @@ function [result] = Ideal_Filter_RGB(image, D0, index)
     result = im2uint8(result);
 end
 ```
+
 > Butterworth Filter
 
 ```
 function [zz] =Butterworth_Filter(image,D0,index)
 [H W L]=size(image);
 filter =zeros(H,W,L);
-for j=1:H 
-    for k=1:W 
+for j=1:H
+    for k=1:W
         dist=sqrt((j-(H/2)).^2+(k-(W/2)).^2);
         filter(j,k)=(1/(1+(dist/D0).^(2)));
     end
@@ -690,18 +706,19 @@ else
     filter=1-filter;
 end
 
-fi = fft2(image); 
+fi = fft2(image);
 fi = fftshift(fi);
-reall=real(fi);  
+reall=real(fi);
 imagin=imag(fi);
-nreal=filter.*reall; 
+nreal=filter.*reall;
 nimagin =filter.*imagin;
 NI=nreal(:,:)+i*nimagin(:,:);
 NI =fftshift(NI);
-NI=ifft2(NI) ;   
+NI=ifft2(NI) ;
 zz=mat2gray((abs(NI)));
 end
 ```
+
 ```
 function [result] = Butterworth_Filter_RGB(image, D0, index)
     [H, W, L] = size(image);
@@ -718,7 +735,9 @@ function [result] = Butterworth_Filter_RGB(image, D0, index)
     result = im2uint8(result);
 end
 ```
+
 > Gaussian Filter
+
 ```
 function [result] = Gaussian_Filter_RGB(image, D0, index)
     [H, W, L] = size(image);
@@ -736,6 +755,7 @@ function [result] = Gaussian_Filter_RGB(image, D0, index)
     result = im2uint8(result);
 end
 ```
+
 ```
 function [ zz ] = Gaussian_Filter( I,D0,index )
 [H W L]=size( I );
@@ -763,6 +783,7 @@ NI=ifft2(NI);
 zz=mat2gray((abs(NI)));
 end
 ```
+
 <hr>
 
 <h3 style="
@@ -776,17 +797,18 @@ end
 Recover an image that has been degraded by noise(objective).
 </p>
 
-* Noise Probability Density Function
-  * Gaussian (Normal) Noise
-  * Rayleigh Noise
-  * Erlang(Gamma) Noise
-  * Exponential Noise
-  * Uniform Noise
-  * Bipolar Impulse Noise ( salt-and-pepper )
+- Noise Probability Density Function
+  - Gaussian (Normal) Noise
+  - Rayleigh Noise
+  - Erlang(Gamma) Noise
+  - Exponential Noise
+  - Uniform Noise
+  - Bipolar Impulse Noise ( salt-and-pepper )
 
 <img src="img/nois.png">
 
 > Gaussian Noise
+
 ```
 function [new_img] = Gaussian_noise_rgb(img, m, s)
     img = double(img);
@@ -815,7 +837,9 @@ function [new_img] = Gaussian_noise_rgb(img, m, s)
     new_img = uint8(new_img);
 end
 ```
+
 > Rayleigh Noise
+
 ```
 function [h]=RayLeigh_Noise(img,a,b)
 [w,h,l]=size(img);
@@ -824,7 +848,7 @@ new_image=img;
 for k=1:l
 for i=0:255
     ns=(2*(i-a)*exp(power(i-a,2)/b))/b;
- 
+
     ns=uint8(ns);
     for j=1:ns
     x=randi(w,1,1);
@@ -836,7 +860,9 @@ end
 h=uint8(new_image);
 end
 ```
+
 > Erlang(Gamma) Noise
+
 ```
 function [ new_img ] = Erlang_Gamma_Noise( img,a,b )
 [H W L]=size(img);
@@ -855,7 +881,9 @@ new_img=stretching(img, 1,255);
 new_img=uint8(new_img);
 end
 ```
+
 > exponential
+
 ```
 function [ new_img ] = Exponential_Noise( img,a )
 [H W L]=size(img);
@@ -874,7 +902,9 @@ new_img=stretching(img, 1,255);
 new_img=uint8(new_img);
 end
 ```
+
 > Uniform Noise
+
 ```
 function [ new_img ] = uniform_noise( img, a, b )
 img=double(img);
@@ -895,7 +925,9 @@ new_img=stretching(img, 1,255);
 new_img=uint8(new_img);
 end
 ```
+
 > Bipolar Impulse Noise
+
 ```
 function [ new_img ] = saltAndPepper( img,ps,pp )
 [H W L]=size(img);
@@ -919,3 +951,5 @@ new_img=img;
 
 end
 ```
+
+"# Image-Processing-Project"
