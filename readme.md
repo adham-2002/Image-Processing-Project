@@ -2,15 +2,9 @@
 
 ## Project Video
 
-<!DOCTYPE html>
-<html>
-<body>
-  <video width="600" controls>
-    <source src="https://github.com/user-attachments/assets/4e1d4762-e5a9-442d-a402-e9accb71fe16" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</body>
-</html>
+[Watch the video](https://github.com/user-attachments/assets/4e1d4762-e5a9-442d-a402-e9accb71fe16)
+
+<video src="https://github.com/user-attachments/assets/4e1d4762-e5a9-442d-a402-e9accb71fe16"></video>
 
 ## commands in Matlab
 
